@@ -1,9 +1,10 @@
-package com.devslopes.datafrost1997.gitterchat
+package com.devslopes.datafrost1997.gitterchat.Controller
 
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.devslopes.datafrost1997.gitterchat.R
 import kotlinx.android.synthetic.main.activity_create_user.*
 import java.util.*
 

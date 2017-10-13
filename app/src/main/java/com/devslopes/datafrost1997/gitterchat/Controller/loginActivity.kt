@@ -1,9 +1,10 @@
-package com.devslopes.datafrost1997.gitterchat
+package com.devslopes.datafrost1997.gitterchat.Controller
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.devslopes.datafrost1997.gitterchat.R
 
 class loginActivity : AppCompatActivity() {
 
