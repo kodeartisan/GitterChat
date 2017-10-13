@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.devslopes.datafrost1997.gitterchat.R
+import com.devslopes.datafrost1997.gitterchat.Services.AuthService
 import kotlinx.android.synthetic.main.activity_create_user.*
 import java.util.*
 
@@ -52,5 +53,10 @@ class CreateUserActivity : AppCompatActivity() {
 
     fun createUserClicked(view: View) {
 
+        AuthService.registerUser(context = this, email = "j@j.com", password = "123456") { complete ->
+            if (complete) {
+
+            }
+        }
     }
 }
