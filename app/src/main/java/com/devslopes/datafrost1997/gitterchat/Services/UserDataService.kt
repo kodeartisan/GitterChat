@@ -32,9 +32,9 @@ object UserDataService {
                 .replace("]","")
                 .replace(",","")
 
-        val r = 0
-        val g = 0
-        val b = 0
+        var r = 0
+        var g = 0
+        var b = 0
 
         val scanner = Scanner(strippedColor)
 
