@@ -22,7 +22,7 @@ object UserDataService {
         email = ""
         AuthService.authToken = ""
         AuthService.userEmail = ""
-        AuthService.isLoggedIn = ""
+        AuthService.isLoggedIn = false
 
     }
 
