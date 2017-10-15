@@ -1,9 +1,11 @@
 package com.devslopes.datafrost1997.gitterchat.Controller
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.devslopes.datafrost1997.gitterchat.R
 import com.devslopes.datafrost1997.gitterchat.Services.AuthService
@@ -24,7 +26,7 @@ class loginActivity : AppCompatActivity() {
 
         val email = loginEmailTxt.text.toString()
         val password = loginPasswordText.text.toString()
-
+        hideKeyboard()
         if (email.isNotEmpty() && password.isNotEmpty()){
             AuthService.loginUser(this, email, password) { loginSucess ->
                 if (loginSucess) {
@@ -66,5 +68,13 @@ class loginActivity : AppCompatActivity() {
         }
         loginLoginBtn.isEnabled = !enable
         loginCreatUserBtn.isEnabled = !enable
+    }
+
+    fun hideKeyboard () {
+
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        if (inputManager.isAcceptingText) {
+            inputManager.hideSoftInputFromWindow(currentFocus.windowToken, 0)
+        }
     }
 }
