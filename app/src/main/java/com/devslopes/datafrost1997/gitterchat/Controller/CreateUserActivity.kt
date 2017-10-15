@@ -1,13 +1,16 @@
 package com.devslopes.datafrost1997.gitterchat.Controller
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.LocalBroadcastManager
 import android.view.View
 import android.widget.Toast
 import com.devslopes.datafrost1997.gitterchat.R
 import com.devslopes.datafrost1997.gitterchat.Services.AuthService
 import com.devslopes.datafrost1997.gitterchat.Services.UserDataService
+import com.devslopes.datafrost1997.gitterchat.Utilities.BROADCAST_USER_DATA_CHANGE
 import kotlinx.android.synthetic.main.activity_create_user.*
 import java.util.*
 
@@ -68,6 +71,8 @@ class CreateUserActivity : AppCompatActivity() {
                         if (loginSucess) {
                             AuthService.createUser(this, userName, email, userAvatar, avatarColor) { createSuccess ->
                                 if (createSuccess) {
+                                    val userDataChange = Intent(BROADCAST_USER_DATA_CHANGE)
+                                    LocalBroadcastManager.getInstance(this).sendBroadcast(userDataChange)
                                     enableSpinner(false)
                                     finish()
                                 } else {
