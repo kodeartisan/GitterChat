@@ -1,14 +1,12 @@
 package com.devslopes.datafrost1997.gitterchat.Controller
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.devslopes.datafrost1997.gitterchat.R
@@ -75,6 +73,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addChannelClicked(view: View) {
+
+        if(AuthService.isLoggedIn) {
+            val builder = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.add_channel_dialog,null)
+
+            builder.setView(dialogView)
+                    .setPositiveButton("Add") { dialogInterface, i ->
+                        
+                    }
+                    .setNegativeButton("Cancel") { dialogInterface, i ->
+                        
+                    }
+                    .show()
+        }
 
     }
 
