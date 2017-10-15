@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.devslopes.datafrost1997.gitterchat.R
 import com.devslopes.datafrost1997.gitterchat.Services.AuthService
+import com.devslopes.datafrost1997.gitterchat.Services.UserDataService
 import kotlinx.android.synthetic.main.activity_create_user.*
 import java.util.*
 
@@ -48,18 +49,26 @@ class CreateUserActivity : AppCompatActivity() {
         val savedG = g.toDouble() / 255
         val savedB = b.toDouble() / 255
 
-        avatarColor = "[$savedR, $savedG, $savedB]"
+        avatarColor = "[$savedR, $savedG, $savedB, 1]"
     }
 
     fun createUserClicked(view: View) {
+
+        val userName = createUserNameText.text.toString()
         val email = createEmailText.text.toString()
         val password = createPasswordText.text.toString()
-        AuthService.registerUser(context = this, email, password) { registerSucess ->
+        AuthService.registerUser(this, email, password) { registerSucess ->
             if (registerSucess) {
                 AuthService.loginUser(this, email, password) { loginSucess ->
                     if (loginSucess) {
-                        println(AuthService.authToken)
-                        println(AuthService.userEmail)
+                        AuthService.createUser(this, userName, email, userAvatar, avatarColor) { createSuccess ->
+                            if (createSuccess) {
+                                println(UserDataService.avatarName)
+                                println(UserDataService.avatarColor)
+                                println(UserDataService.name)
+                                finish()
+                            }
+                        }
                     }
                 }
             }

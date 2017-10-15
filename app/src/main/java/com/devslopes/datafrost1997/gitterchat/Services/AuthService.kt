@@ -124,7 +124,6 @@ object AuthService {
             }
 
         }
-
+        Volley.newRequestQueue(context).add(createRequest)
     }
-    Volley.newRequestQueue(context).add(createRequest)
 }
