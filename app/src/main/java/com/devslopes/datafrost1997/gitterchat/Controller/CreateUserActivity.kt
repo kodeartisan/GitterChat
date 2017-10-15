@@ -98,7 +98,7 @@ class CreateUserActivity : AppCompatActivity() {
     fun errorToast() {
         Toast.makeText(this, "Something went Wrong, Please Try Again",
                 Toast.LENGTH_LONG).show()
-        enableSpinner(false))
+        enableSpinner(false)
     }
 
     fun enableSpinner(enable: Boolean) {
