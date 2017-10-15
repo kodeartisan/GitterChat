@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.devslopes.datafrost1997.gitterchat.R
 import com.devslopes.datafrost1997.gitterchat.Services.AuthService
 import com.devslopes.datafrost1997.gitterchat.Services.UserDataService
@@ -59,20 +60,40 @@ class CreateUserActivity : AppCompatActivity() {
         val userName = createUserNameText.text.toString()
         val email = createEmailText.text.toString()
         val password = createPasswordText.text.toString()
-        AuthService.registerUser(this, email, password) { registerSucess ->
-            if (registerSucess) {
-                AuthService.loginUser(this, email, password) { loginSucess ->
-                    if (loginSucess) {
-                        AuthService.createUser(this, userName, email, userAvatar, avatarColor) { createSuccess ->
-                            if (createSuccess) {
-                                enableSpinner(false)
-                                finish()
+
+        if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+            AuthService.registerUser(this, email, password) { registerSucess ->
+                if (registerSucess) {
+                    AuthService.loginUser(this, email, password) { loginSucess ->
+                        if (loginSucess) {
+                            AuthService.createUser(this, userName, email, userAvatar, avatarColor) { createSuccess ->
+                                if (createSuccess) {
+                                    enableSpinner(false)
+                                    finish()
+                                } else {
+                                    errorToast()
+                                }
                             }
+                        } else {
+                            errorToast()
                         }
                     }
+                } else {
+                    errorToast()
                 }
             }
+        } else {
+            Toast.makeText(this, "Make Sure all credentials are filled in",
+                    Toast.LENGTH_LONG).show()
+            enableSpinner(false)
         }
+
+    }
+
+    fun errorToast() {
+        Toast.makeText(this, "Something went Wrong, Please Try Again",
+                Toast.LENGTH_LONG).show()
+        enableSpinner(false))
     }
 
     fun enableSpinner(enable: Boolean) {
