@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val userDataChangeReceiver = object: BroadcastReceiver () {
-        override fun onReceive(context: Context?, intent: Intent?) {
+        override fun onReceive(context: Context, intent: Intent?) {
             if (AuthService.isLoggedIn) {
                 userNameNavHeader.text = UserDataService.name
                 userEmailNavHeader.text = UserDataService.email
@@ -71,6 +71,12 @@ class MainActivity : AppCompatActivity() {
                 userImageNavHeader.setImageResource(resourceId)
                 userImageNavHeader.setBackgroundColor(UserDataService.returnAvatarColor(UserDataService.avatarColor))
                 loginBtnNavHeader.text = "Logout"
+
+                MessageService.getChannels(context) { complete ->
+                    if(complete) {
+                        channelAdapter.notifyDataSetChanged()
+                    }
+                }
             }
         }
     }
@@ -132,10 +138,7 @@ class MainActivity : AppCompatActivity() {
 
             val newChannel = Channel(channelName, channelDescription, channelId)
             MessageService.channels.add(newChannel)
-            println(newChannel.name)
-            println(newChannel.description)
-            println(newChannel.id)
-
+            channelAdapter.notifyDataSetChanged()
         }
     }
 
