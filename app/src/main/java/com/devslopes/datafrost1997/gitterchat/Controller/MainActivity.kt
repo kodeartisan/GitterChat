@@ -15,11 +15,15 @@ import com.devslopes.datafrost1997.gitterchat.R
 import com.devslopes.datafrost1997.gitterchat.Services.AuthService
 import com.devslopes.datafrost1997.gitterchat.Services.UserDataService
 import com.devslopes.datafrost1997.gitterchat.Utilities.BROADCAST_USER_DATA_CHANGE
+import com.devslopes.datafrost1997.gitterchat.Utilities.SOCKET_URL
+import io.socket.client.IO
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    val socket = IO.socket(SOCKET_URL)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +35,23 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
+    }
 
+    override fun onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(userDataChangeReceiver)
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onRestart()
         LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReceiver,
                 IntentFilter(BROADCAST_USER_DATA_CHANGE))
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        socket.disconnect()
+        super.onDestroy()
     }
 
     private val userDataChangeReceiver = object: BroadcastReceiver () {
