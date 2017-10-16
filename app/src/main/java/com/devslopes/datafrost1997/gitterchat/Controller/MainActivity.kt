@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import com.devslopes.datafrost1997.gitterchat.Model.Channel
 import com.devslopes.datafrost1997.gitterchat.R
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
     val socket = IO.socket(SOCKET_URL)
 
+    lateinit var channelAdapter: ArrayAdapter<Channel>
+     private fun setupAdapters() {
+         channelAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, MessageService.channels)
+         channel_list.adapter = channelAdapter
+     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
+        setupAdapters()
     }
 
     override fun onResume() {
