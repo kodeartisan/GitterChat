@@ -8,7 +8,7 @@ import android.support.v4.content.LocalBroadcastManager
 import android.view.View
 import android.widget.Toast
 import com.devslopes.datafrost1997.gitterchat.R
-import com.devslopes.datafrost1997.gitterchat.R.id.createPasswordText
+import com.devslopes.datafrost1997.gitterchat.R.id.*
 import com.devslopes.datafrost1997.gitterchat.Services.AuthService
 import com.devslopes.datafrost1997.gitterchat.Services.UserDataService
 import com.devslopes.datafrost1997.gitterchat.Utilities.BROADCAST_USER_DATA_CHANGE
@@ -66,11 +66,11 @@ class CreateUserActivity : AppCompatActivity() {
         val password = createPasswordText.text.toString()
 
         if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-            AuthService.registerUser(this, email, password) { registerSucess ->
+            AuthService.registerUser(email, password) { registerSucess ->
                 if (registerSucess) {
-                    AuthService.loginUser(this, email, password) { loginSucess ->
+                    AuthService.loginUser(email, password) { loginSucess ->
                         if (loginSucess) {
-                            AuthService.createUser(this, userName, email, userAvatar, avatarColor) { createSuccess ->
+                            AuthService.createUser( userName, email, userAvatar, avatarColor) { createSuccess ->
                                 if (createSuccess) {
                                     val userDataChange = Intent(BROADCAST_USER_DATA_CHANGE)
                                     LocalBroadcastManager.getInstance(this).sendBroadcast(userDataChange)
