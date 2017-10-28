@@ -49,6 +49,12 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
         setupAdapters()
 
+        channel_list.setOnItemClickListener { _, _, i, _ ->
+            selectedChannel = MessageService.channels[i]
+            drawer_layout.closeDrawer(GravityCompat.START)
+            updateWithChanel()
+        }
+
         if (App.prefs.isLoggedIn) {
             AuthService.findUserByEmail(this) {}
         }
@@ -128,7 +134,7 @@ class MainActivity : AppCompatActivity() {
             val dialogView = layoutInflater.inflate(R.layout.add_channel_dialog,null)
 
             builder.setView(dialogView)
-                    .setPositiveButton("Add") { dialogInterface, i ->
+                    .setPositiveButton("Add") { _, _ ->
                         val nameTextField = dialogView.findViewById<EditText>(R.id.addChannelNameTxt)
                         val descTextField = dialogView.findViewById<EditText>(R.id.addChannelDescTxt)
                         val channelName = nameTextField.text.toString()
@@ -137,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                         socket.emit("newChannel", channelName, channelDesc)
 
                     }
-                    .setNegativeButton("Cancel") { dialogInterface, i ->
+                    .setNegativeButton("Cancel") { _, _ ->
                     }
                     .show()
         }
