@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import com.devslopes.datafrost1997.gitterchat.Model.Channel
 import com.devslopes.datafrost1997.gitterchat.R
+import com.devslopes.datafrost1997.gitterchat.R.id.*
 import com.devslopes.datafrost1997.gitterchat.Services.AuthService
 import com.devslopes.datafrost1997.gitterchat.Services.MessageService
 import com.devslopes.datafrost1997.gitterchat.Services.UserDataService
