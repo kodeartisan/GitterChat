@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.devslopes.datafrost1997.gitterchat.R
+import com.devslopes.datafrost1997.gitterchat.R.id.*
 import com.devslopes.datafrost1997.gitterchat.Services.AuthService
 import kotlinx.android.synthetic.main.activity_create_user.*
 import kotlinx.android.synthetic.main.activity_login.*
