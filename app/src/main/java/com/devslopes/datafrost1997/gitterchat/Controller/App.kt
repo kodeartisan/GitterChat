@@ -9,10 +9,10 @@ import com.devslopes.datafrost1997.gitterchat.Utilities.SharedPrefs
 class App: Application(){
 
     companion object {
-        lateinit var sharedPreferences: SharedPrefs
+        lateinit var prefs: SharedPrefs
     }
     override fun onCreate() {
-        sharedPreferences = SharedPrefs(applicationContext)
+        prefs = SharedPrefs(applicationContext)
         super.onCreate()
     }
 }

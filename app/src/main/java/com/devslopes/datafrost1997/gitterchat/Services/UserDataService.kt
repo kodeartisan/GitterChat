@@ -1,6 +1,7 @@
 package com.devslopes.datafrost1997.gitterchat.Services
 
 import android.graphics.Color
+import com.devslopes.datafrost1997.gitterchat.Controller.App
 import java.util.*
 
 /**
@@ -20,9 +21,9 @@ object UserDataService {
         avatarColor = ""
         name = ""
         email = ""
-        AuthService.authToken = ""
-        AuthService.userEmail = ""
-        AuthService.isLoggedIn = false
+        App.prefs.authToken = ""
+        App.prefs.userEmail = ""
+        App.prefs.isLoggedIn = false
 
     }
 

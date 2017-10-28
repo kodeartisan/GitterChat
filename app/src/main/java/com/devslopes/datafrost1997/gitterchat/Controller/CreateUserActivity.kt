@@ -8,6 +8,7 @@ import android.support.v4.content.LocalBroadcastManager
 import android.view.View
 import android.widget.Toast
 import com.devslopes.datafrost1997.gitterchat.R
+import com.devslopes.datafrost1997.gitterchat.R.id.createPasswordText
 import com.devslopes.datafrost1997.gitterchat.Services.AuthService
 import com.devslopes.datafrost1997.gitterchat.Services.UserDataService
 import com.devslopes.datafrost1997.gitterchat.Utilities.BROADCAST_USER_DATA_CHANGE
