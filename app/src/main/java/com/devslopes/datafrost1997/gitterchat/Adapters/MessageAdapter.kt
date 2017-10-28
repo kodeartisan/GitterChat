@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.devslopes.datafrost1997.gitterchat.Model.Message
 import com.devslopes.datafrost1997.gitterchat.R
+import com.devslopes.datafrost1997.gitterchat.Services.UserDataService
 
 /**
  * Created by datafrost1997 on 28/10/17.
@@ -21,6 +22,7 @@ class MessageAdapter(val context: Context, val messages: ArrayList<Message>) : R
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+        holder?.bindMessage(context, messages[position])
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +38,10 @@ class MessageAdapter(val context: Context, val messages: ArrayList<Message>) : R
         fun bindMessage(context: Context, message: Message) {
             val resourceId = context.resources.getIdentifier(message.userAvatar, "drawable", context.packageName)
             userImage?.setImageResource(resourceId)
-
+            userImage?.setBackgroundColor(UserDataService.returnAvatarColor(message.userAvatarColor))
+            userName?.text = message.userName
+            timeStamp?.text = message.timeStamp
+            messageBody?.text = message.message
         }
     }
 }
