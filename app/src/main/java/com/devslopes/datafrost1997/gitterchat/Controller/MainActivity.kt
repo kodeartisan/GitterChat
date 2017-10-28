@@ -103,6 +103,15 @@ class MainActivity : AppCompatActivity() {
 
     fun updateWithChanel() {
         mainChannelName.text = "#${selectedChannel?.name}"
+      if (selectedChannel != null) {
+          MessageService.getMessages(selectedChannel!!.id) { complete ->
+              if (complete) {
+                  for (message in MessageService.messages) {
+                      println(message.message)
+                  }
+              }
+          }
+      }
     }
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
