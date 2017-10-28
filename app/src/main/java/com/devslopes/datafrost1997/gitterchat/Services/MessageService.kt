@@ -7,6 +7,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.devslopes.datafrost1997.gitterchat.Controller.App
 import com.devslopes.datafrost1997.gitterchat.Model.Channel
+import com.devslopes.datafrost1997.gitterchat.Model.Message
 import com.devslopes.datafrost1997.gitterchat.Utilities.URL_GET_CHANNELS
 import org.json.JSONException
 
@@ -16,6 +17,7 @@ import org.json.JSONException
 object MessageService {
 
     val channels = ArrayList<Channel> ()
+    val messages = ArrayList<Message> ()
 
     fun getChannels(complete: (Boolean) -> Unit) {
         val channelsRequest = object : JsonArrayRequest(Method.GET, URL_GET_CHANNELS, null , Response.Listener { response ->
