@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Arjun"
+        tools:text="Arjun"
         app:layout_constraintStart_toEndOf="@+id/messageUserImage"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Oct 28, 9:30 PM"
+        tools:text="Oct 28, 9:30 PM"
         app:layout_constraintStart_toEndOf="@+id/messageUserNamelbl"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +43,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin placerat lacinia rhoncus. Donec leo arcu, luctus sit amet lobortis quis, sagittis sed libero. Vivamus id nunc vitae ligula elementum ullamcorper at non justo. Aliquam sodales accumsan massa sit amet convallis. Integer venenatis nibh vitae tellus imperdiet accumsan. Aliquam ut eros id est venenatis consectetur at ut metus. Proin ac egestas ex, ut molestie purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut ac accumsan enim."
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin placerat lacinia rhoncus. Donec leo arcu, luctus sit amet lobortis quis, sagittis sed libero. Vivamus id nunc vitae ligula elementum ullamcorper at non justo. Aliquam sodales accumsan massa sit amet convallis. Integer venenatis nibh vitae tellus imperdiet accumsan. Aliquam ut eros id est venenatis consectetur at ut metus. Proin ac egestas ex, ut molestie purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut ac accumsan enim."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/messageUserImage"

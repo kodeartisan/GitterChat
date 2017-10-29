@@ -59,13 +59,12 @@ object MessageService {
         val url = "$URL_GET_MESSAGES$channelId"
         val messagesRequest = object : JsonArrayRequest(Method.GET, url, null, Response.Listener { response ->
             clearMessages()
-
             try {
                 for (x in 0 until response.length()) {
                     val message = response.getJSONObject(x)
                     val messageBody = message.getString("messageBody")
                     val channelId = message.getString("channelId")
-                    val id = message.getString("id")
+                    val id = message.getString("_id")
                     val userName = message.getString("userName")
                     val userAvatar = message.getString("userAvatar")
                     val userAvatarColor = message.getString("userAvatarColor")

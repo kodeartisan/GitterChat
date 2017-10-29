@@ -59,6 +59,8 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         setupAdapters()
+        LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReceiver,
+                IntentFilter(BROADCAST_USER_DATA_CHANGE))
 
         channel_list.setOnItemClickListener { _, _, i, _ ->
             selectedChannel = MessageService.channels[i]
@@ -71,13 +73,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onRestart()
-        LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReceiver,
-                IntentFilter(BROADCAST_USER_DATA_CHANGE))
-
-        super.onResume()
-    }
 
     override fun onDestroy() {
         socket.disconnect()
@@ -115,10 +110,13 @@ class MainActivity : AppCompatActivity() {
       if (selectedChannel != null) {
           MessageService.getMessages(selectedChannel!!.id) { complete ->
               if (complete) {
-                    messageAdapter.notifyDataSetChanged()
-                    if (messageAdapter.itemCount > 0) {
-                        messageListView.smoothScrollToPosition(messageAdapter.itemCount - 1)
-                    }
+                  for (message in MessageService.messages) {
+                      println(message.message)
+                  }
+//                    messageAdapter.notifyDataSetChanged()
+//                    if (messageAdapter.itemCount > 0) {
+//                        messageListView.smoothScrollToPosition(messageAdapter.itemCount - 1)
+//                    }
               }
           }
       }
@@ -143,6 +141,7 @@ class MainActivity : AppCompatActivity() {
             userImageNavHeader.setImageResource(R.drawable.profiledefault)
             userImageNavHeader.setBackgroundColor(Color.TRANSPARENT)
             loginBtnNavHeader.text = "Login"
+            mainChannelName.text = "Please Log In"
         } else {
             val loginIntent = Intent(this, loginActivity::class.java)
             startActivity(loginIntent)
@@ -179,7 +178,7 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 val channelName = args[0] as String
                 val channelDescription = args[1] as String
-                val channelId =args[2] as String
+                val channelId = args[2] as String
 
                 val newChannel = Channel(channelName, channelDescription, channelId)
                 MessageService.channels.add(newChannel)
